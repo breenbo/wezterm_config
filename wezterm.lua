@@ -11,9 +11,20 @@ if wezterm.config_builder then
 	config = wezterm.config_builder()
 end
 
--- config.color_scheme = "tokyonight_moon"
+wezterm.log_error("Config Dir " .. wezterm.config_dir)
+---- Colorscheme
+local file = io.open(wezterm.config_dir .. "/colorscheme", "r")
+if file then
+	config.color_scheme = file:read("*a")
+	file:close()
+else
+	config.color_scheme = "Tokyo Night Day"
+end
+--
+--
+--
 config.window_decorations = "RESIZE"
-config.color_scheme = "tokyonight_moon"
+-- config.color_scheme = "tokyonight_moon"
 config.font = wezterm.font("FiraCode Nerd Font")
 config.font_size = 14
 config.inactive_pane_hsb = { hue = 1.0, saturation = 1, brightness = 0.4 }
