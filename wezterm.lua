@@ -191,12 +191,19 @@ wezterm.on("gui-startup", function()
 	--
 	--
 	--
-	local scrum_tab, scrum_pane, window = mux.spawn_window({
+	local mail_tab, mail_pane, window = mux.spawn_window({
 		workspace = "--- homePad ---",
-		cwd = wezterm.home_dir .. "/Documents/homePad/sprints/template",
 	})
-	scrum_tab:set_title("Scrum")
-	scrum_pane:send_text("nv sprintReview.typ\n")
+	mail_tab:set_title("Mail")
+	mail_pane:send_text("aerc\n")
+	--
+	--
+
+	local scrum_tab, _, _ = window:spawn_tab({
+		cwd = wezterm.home_dir .. "/Documents/homePad/",
+	})
+	scrum_tab:set_title("Notes")
+	-- scrum_pane:send_text("nvp sprintReview.typ\n")
 	--
 	--
 	--
@@ -232,7 +239,21 @@ wezterm.on("gui-startup", function()
 	--
 	--
 	--
-	scrum_tab:activate()
+	local sqlite_tab, _, _ = window:spawn_tab({
+		cwd = wezterm.home_dir .. "/Documents/sqlite_hp",
+	})
+	sqlite_tab:set_title("sqlite")
+	--
+	--
+	--
+	local api_tab, _, _ = window:spawn_tab({
+		cwd = wezterm.home_dir .. "/Documents/homePad/API_test/kulala",
+	})
+	api_tab:set_title("api_test")
+	--
+	--
+	--
+	mail_tab:activate()
 end)
 
 --
